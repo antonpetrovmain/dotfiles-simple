@@ -1,6 +1,5 @@
-
-[credential]
-        helper = !'/usr/local/bin/devpod' agent git-credentials --port 12049
 [user]
 	email = anton.petrov.main@gmail.com
 	name = Anton Petrov
+[credential]
+        helper = !'/usr/local/bin/devpod' agent git-credentials --port 12049
