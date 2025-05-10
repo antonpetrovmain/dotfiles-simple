@@ -25,6 +25,6 @@ ln -s $HOME/dotfiles/nix/config.nix $HOME/.config/nixpkgs/config.nix
 nix-env -iA nixpkgs.myPackages
 
 mkdir $HOME/.local/bin/
-ln -s $HOME/dotfiles/jdtls/jdtls $HOME/.local/bin/jdtls
+sudo ln -s $HOME/dotfiles/jdtls/jdtls $HOME/.local/bin/jdtls
 
 echo "Dotfiles installed!"
