@@ -5,6 +5,7 @@ rm $HOME/.bashrc
 rm $HOME/.gitconfig
 rm -rf $HOME/.devpod/config.yaml
 rm -rf $HOME/.config/nvim
+rm -rf $HOME/.config/nixpkgs
 
 
 ln -s $HOME/dotfiles/.env $HOME/.env
@@ -17,6 +18,9 @@ ln -s $HOME/dotfiles/nvim $HOME/.config/nvim
 
 mkdir $HOME/.devpod
 ln -s $HOME/dotfiles/devpod/config.yaml $HOME/.devpod/config.yaml
+
+mkdir $HOME/.config/nixpkgs
+ln -s $HOME/dotfiles/nix/config.nix $HOME/.config/nixpkgs/config.nix
 
 nix-env -iA nixpkgs.myPackages
 
