@@ -18,4 +18,6 @@ ln -s $HOME/dotfiles/nvim $HOME/.config/nvim
 mkdir $HOME/.devpod
 ln -s $HOME/dotfiles/devpod/config.yaml $HOME/.devpod/config.yaml
 
+nix-env -iA nixpkgs.myPackages
+
 echo "Dotfiles installed!"
