@@ -9,6 +9,8 @@
         jdk23
         python314
         maven
+        xsel
+        nodejs_23
       ];
     };
   };

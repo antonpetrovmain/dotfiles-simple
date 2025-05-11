@@ -1,5 +1,46 @@
+-- Neovim AI Configuration: Code completion/chat plugins (LM Studio, OpenAI FIM, Qwen, DeepSeek)
+-- Includes model settings, keybindings, and AI assistant integrations
+
 return {
+   {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("codecompanion").setup({
+        strategies = {
+          chat = { adapter = "lmstudio" },  -- you can call it whatever you like
+        },
+        adapters = {
+          lmstudio = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                -- 1️⃣  Base URL (NO trailing slash)
+                url       = "https://antonpetrov.dev",
+                -- 2️⃣  Endpoint for chat completions (defaults to /v1/chat/completions,
+                --     but it’s clearer to pin it explicitly)
+                chat_url  = "/v1/chat/completions",
+                -- 3️⃣  Bearer token – pulled straight from your shell env
+                api_key   = vim.env.LM_STUDIO_KEY or "",
+              },
+
+              -- 4️⃣  Tiny schema so CodeCompanion doesn’t call /v1/models
+              schema = {
+                model = {
+                  default  = "qwen3-30b-a3b-mlx",
+                  choices  = { "qwen3-30b-a3b-mlx" },
+                },
+              },
+            })
+          end,
+        },
+      })
+    end,
+  },
   {
+     enabled = false,
     "milanglacier/minuet-ai.nvim",
     opts = {
       virtualtext = {
@@ -45,6 +86,7 @@ return {
     },
   },
   {
+     enabled = false,
     "yetone/avante.nvim",
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
@@ -65,6 +107,13 @@ return {
           api_key_name = "LM_STUDIO_KEY", -- The name of the environment variable that contains the API key
           max_tokens = 40000,
         },
+        ["qwen3-32b"] = {
+          __inherited_from = "openai",
+          endpoint = "https://antonpetrov.dev/v1", -- The full endpoint of the provider
+          model = "qwen3-32b", -- The model name to use with this provider
+          api_key_name = "LM_STUDIO_KEY", -- The name of the environment variable that contains the API key
+          max_tokens = 40000,
+        },
         ["deepseek-coder-v2-lite-instruct-mlx"] = {
           __inherited_from = "openai",
           endpoint = "https://antonpetrov.dev/v1", -- The full endpoint of the provider
@@ -76,6 +125,29 @@ return {
       windows = {
         width = 40,
       },
+      disabled_tools = {
+          "list_files",
+          "search_files",
+          "read_file",
+          "create_file",
+          "rename_file",
+          "delete_file",
+          "create_dir",
+          "rename_dir",
+          "delete_dir",
+          "bash",
+      },
+      -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
+      system_prompt = function()
+          local hub = require("mcphub").get_hub_instance()
+          return hub:get_active_servers_prompt()
+      end,
+      -- The custom_tools type supports both a list and a function that returns a list. Using a function here prevents requiring mcphub before it's loaded
+      custom_tools = function()
+          return {
+              require("mcphub.extensions.avante").mcp_tool(),
+          }
+      end,
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
@@ -110,4 +182,23 @@ return {
       },
     },
   },
+  {
+     enabled = false,
+    "ravitemer/mcphub.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",  -- Required for Job and HTTP requests
+    },
+    -- uncomment the following line to load hub lazily
+    --cmd = "MCPHub",  -- lazy load 
+    build = "npm install -g mcp-hub@latest",  -- Installs required mcp-hub npm module
+    -- uncomment this if you don't want mcp-hub to be available globally or can't use -g
+    -- build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
+    opts = {
+        extensions = {
+            avante = {
+                make_slash_commands = true, -- make /slash commands from MCP server prompts
+            }
+        }
+    }
+  }
 }

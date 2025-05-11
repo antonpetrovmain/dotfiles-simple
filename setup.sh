@@ -26,5 +26,6 @@ nix-env -iA nixpkgs.myPackages
 
 mkdir $HOME/.local/bin/
 sudo ln -s $HOME/dotfiles/jdtls/jdtls $HOME/.local/bin/jdtls
+export JAVA_HOME=/nix/store/`ls -l /nix/store | grep ^d.*openjdk-23 | awk '{print $9}'`
 
 echo "Dotfiles installed!"
