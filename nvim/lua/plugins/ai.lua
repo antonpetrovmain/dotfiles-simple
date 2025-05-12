@@ -1,6 +1,3 @@
--- Neovim AI Configuration: Code completion/chat plugins (LM Studio, OpenAI FIM, Qwen, DeepSeek)
--- Includes model settings, keybindings, and AI assistant integrations
-
 return {
    {
     "olimorris/codecompanion.nvim",
@@ -10,27 +7,35 @@ return {
     },
     config = function()
       require("codecompanion").setup({
+        system_prompt = function() 
+          return 'When you call a tool you must return exactly one JSON object, with no markdown, banners or comments. If the returned json object is not valid, try to fix it, e.g. to remove any extra curly braces at the end of the json.'
+        end,
+        display = {
+          chat = {
+            window = {
+              position = "right",
+              width = 0.4,
+            },
+          },
+        },
         strategies = {
-          chat = { adapter = "lmstudio" },  -- you can call it whatever you like
+          chat = { adapter = "lmstudio" },
+          window_position = "right",
+          cmd = { adapter = "lmstudio" },  -- you can call it whatever you like
+          inline = { adapter = "lmstudio" },  -- you can call it whatever you like
         },
         adapters = {
           lmstudio = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               env = {
-                -- 1️⃣  Base URL (NO trailing slash)
                 url       = "https://antonpetrov.dev",
-                -- 2️⃣  Endpoint for chat completions (defaults to /v1/chat/completions,
-                --     but it’s clearer to pin it explicitly)
                 chat_url  = "/v1/chat/completions",
-                -- 3️⃣  Bearer token – pulled straight from your shell env
                 api_key   = vim.env.LM_STUDIO_KEY or "",
               },
-
-              -- 4️⃣  Tiny schema so CodeCompanion doesn’t call /v1/models
               schema = {
                 model = {
-                  default  = "qwen3-30b-a3b-mlx",
-                  choices  = { "qwen3-30b-a3b-mlx" },
+                  default  = "qwen3-30b-a3b-dwq-05082025",
+                  choices  = { "qwen3-30b-a3b-dwq-05082025", "mlx-community/qwen3-32b" },
                 },
               },
             })
@@ -50,7 +55,6 @@ return {
     end,
   },
   {
-     enabled = false,
     "milanglacier/minuet-ai.nvim",
     opts = {
       virtualtext = {
@@ -86,110 +90,13 @@ return {
           name = "LMStudio",
           end_point = "https://antonpetrov.dev/v1/completions",
           api_key = "LM_STUDIO_KEY",
-          model = "deepseek-coder-v2-lite-instruct-mlx",
+          model = "mlx-community/deepseek-coder-v2-lite-instruct",
           optional = {
-                max_tokens = 56,
+                max_tok= 128,
                 top_p = 0.9,
             },
           },
        },
-    },
-  },
-  {
-     enabled = false,
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    version = false, -- Never set this value to "*"! Never!
-    opts = {
-      provider = "qwen3-30b-a3b-dwq-05082025", -- You can then change this provider here
-      vendors = {
-        ["qwen3-30b-a3b-dwq-05082025"] = {
-          __inherited_from = "openai",
-          endpoint = "https://antonpetrov.dev/v1", -- The full endpoint of the provider
-          model = "qwen3-30b-a3b-dwq-05082025", -- The model name to use with this provider
-          api_key_name = "LM_STUDIO_KEY", -- The name of the environment variable that contains the API key
-          max_tokens = 40000,
-        },
-        ["mlx-community/qwen3-32b"] = {
-          __inherited_from = "openai",
-          endpoint = "https://antonpetrov.dev/v1", -- The full endpoint of the provider
-          model = "mlx-community/qwen3-32b", -- The model name to use with this provider
-          api_key_name = "LM_STUDIO_KEY", -- The name of the environment variable that contains the API key
-          max_tokens = 40000,
-        },
-        ["qwen3-32b"] = {
-          __inherited_from = "openai",
-          endpoint = "https://antonpetrov.dev/v1", -- The full endpoint of the provider
-          model = "qwen3-32b", -- The model name to use with this provider
-          api_key_name = "LM_STUDIO_KEY", -- The name of the environment variable that contains the API key
-          max_tokens = 40000,
-        },
-        ["deepseek-coder-v2-lite-instruct-mlx"] = {
-          __inherited_from = "openai",
-          endpoint = "https://antonpetrov.dev/v1", -- The full endpoint of the provider
-          model = "deepseek-coder-v2-lite-instruct-mlx", -- The model name to use with this provider
-          api_key_name = "LM_STUDIO_KEY", -- The name of the environment variable that contains the API key
-          max_tokens = 160000,
-        },
-      },
-      windows = {
-        width = 40,
-      },
-      disabled_tools = {
-          "list_files",
-          "search_files",
-          "read_file",
-          "create_file",
-          "rename_file",
-          "delete_file",
-          "create_dir",
-          "rename_dir",
-          "delete_dir",
-          "bash",
-      },
-      -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
-      system_prompt = function()
-          local hub = require("mcphub").get_hub_instance()
-          return hub:get_active_servers_prompt()
-      end,
-      -- The custom_tools type supports both a list and a function that returns a list. Using a function here prevents requiring mcphub before it's loaded
-      custom_tools = function()
-          return {
-              require("mcphub.extensions.avante").mcp_tool(),
-          }
-      end,
-    },
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "stevearc/dressing.nvim",
-      { "nvim-lua/plenary.nvim", version = false },
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "echasnovski/mini.pick", -- for file_selector provider mini.pick
-      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-      "ibhagwan/fzf-lua", -- for file_selector provider fzf
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      {
-        -- support for image pasting
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
     },
   },
   {
@@ -206,8 +113,9 @@ return {
         extensions = {
             avante = {
                 make_slash_commands = true, -- make /slash commands from MCP server prompts
-            }
-        }
+            },
+            lualine = {},
+        },
     }
-  }
+  },
 }
