@@ -1,14 +1,20 @@
 source $HOME/.env
+
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 export PATH="$HOME/.config/nvim/node_modules/.bin:$PATH"
+
+llm() {
+  source ~/tools/llm-cli/.venv/bin/activate
+  python ~/tools/llm-cli/cli_llm.py "$@"
+  deactivate
+}
+
 l() {
   llm chat \
     --model $MODEL_QWEN3_MOE \
     --stream \
     -p "$*"
 }
-
-
 
