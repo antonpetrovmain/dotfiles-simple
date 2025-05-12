@@ -3,3 +3,5 @@
 	name = Anton Petrov
 [credential]
         helper = !'/usr/local/bin/devpod' agent git-credentials --port 12049
+[init]
+	defaultBranch = main
