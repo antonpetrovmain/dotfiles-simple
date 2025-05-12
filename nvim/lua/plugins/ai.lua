@@ -1,15 +1,12 @@
 return {
    {
-    "olimorris/codecompanion.nvim",
+    "antonpetrovmain/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
     config = function()
       require("codecompanion").setup({
-        system_prompt = function() 
-          return 'When you call a tool you must return exactly one JSON object, with no markdown, banners or comments. If the returned json object is not valid, try to fix it, e.g. to remove any extra curly braces at the end of the json.'
-        end,
         display = {
           chat = {
             window = {
