@@ -3,5 +3,12 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 export PATH="$HOME/.config/nvim/node_modules/.bin:$PATH"
+l() {
+  noglob llm chat \
+    --model $MODEL_QWEN3_MOE \
+    --stream \
+    -p "$*"
+}
+
 
 
