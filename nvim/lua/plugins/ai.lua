@@ -31,8 +31,8 @@ return {
               },
               schema = {
                 model = {
-                  default  = "qwen3-30b-a3b-dwq-05082025",
-                  choices  = { "qwen3-30b-a3b-dwq-05082025", "mlx-community/qwen3-32b" },
+                  default  = os.getenv('MODEL_QWEN3_MOE'),
+                  choices  = { os.getenv('MODEL_QWEN3_MOE'), os.getenv('MODEL_QWEN3') },
                 },
               },
             })
@@ -87,7 +87,7 @@ return {
           name = "LMStudio",
           end_point = "https://antonpetrov.dev/v1/completions",
           api_key = "LM_STUDIO_KEY",
-          model = "mlx-community/deepseek-coder-v2-lite-instruct",
+          model = os.getenv('MODEL_QWEN3_MOE'),
           optional = {
                 max_tok= 128,
                 top_p = 0.9,
