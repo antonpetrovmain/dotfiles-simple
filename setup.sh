@@ -28,7 +28,12 @@ mkdir $HOME/.local/bin/
 sudo ln -s $HOME/dotfiles/jdtls/jdtls $HOME/.local/bin/jdtls
 export JAVA_HOME=/nix/store/`ls -l /nix/store | grep ^d.*openjdk-23 | awk '{print $9}'`
 
-mkdir $HOME/tools
-git clone git@github.com:antonpetrovmain/llm-cli.git $HOME/tools/llm-cli
+mkdir -p $HOME/tools/llm-cli
+cd $HOME/tools/llm-cli
+git clone git@github.com:antonpetrovmain/llm-cli.git
+source .venv/bin/activate
+pip install -r requirements.txt
+deactivate
+cd -
 
 echo "Dotfiles installed!"
