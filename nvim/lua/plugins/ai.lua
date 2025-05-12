@@ -89,8 +89,9 @@ return {
           api_key = "LM_STUDIO_KEY",
           model = os.getenv('MODEL_QWEN3_MOE'),
           optional = {
-                max_tok= 128,
+                max_tokens = 128,
                 top_p = 0.9,
+                stop = { '\n\n' },
             },
           },
        },
