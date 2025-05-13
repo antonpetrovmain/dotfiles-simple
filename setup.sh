@@ -36,4 +36,9 @@ pip install -r requirements.txt
 deactivate
 cd -
 
+mkdir -p $HOME/.local/bin
+ln -s $HOME/dotfiles/tools/llm $HOME/.local/bin/llm
+ln -s $HOME/dotfiles/tools/llm-short $HOME/.local/bin/l
+
+
 echo "Dotfiles installed!"

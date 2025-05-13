@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source ~/tools/llm-cli/.venv/bin/activate;
+python ~/tools/llm-cli/cli_llm.py "$@";
+deactivate
+

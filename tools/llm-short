@@ -1,0 +1,3 @@
+#!/bin/bash
+llm chat --model $MODEL_QWEN3_MOE --stream -p "$*"
+
