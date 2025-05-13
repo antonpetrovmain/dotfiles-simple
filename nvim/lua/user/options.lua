@@ -16,3 +16,5 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 
+vim.opt.colorcolumn = "80"
+vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#1e1e1e' })
