@@ -25,7 +25,8 @@ ln -s $HOME/dotfiles/nix/config.nix $HOME/.config/nixpkgs/config.nix
 nix-env -iA nixpkgs.myPackages
 
 mkdir $HOME/.local/bin/
-sudo ln -s $HOME/dotfiles/jdtls/jdtls $HOME/.local/bin/jdtls
+sudo ln -s $HOME/dotfiles/lsp/jdtls $HOME/.local/bin/jdtls
+sudo ln -s $HOME/dotfiles/lsp/lua-language-server $HOME/.local/bin/lua-language-server
 export JAVA_HOME=/nix/store/`ls -l /nix/store | grep ^d.*openjdk-23 | awk '{print $9}'`
 
 mkdir -p $HOME/tools/llm-cli
