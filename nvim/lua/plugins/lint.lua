@@ -1,11 +1,15 @@
-return {{ "nvimtools/none-ls.nvim", lazy = true, 
+return { {
+  "nvimtools/none-ls.nvim",
+  lazy = true,
 
-config = function()
+  config = function()
     local null_ls = require('null_ls')
-    null_ls.setup({sources = {
+    null_ls.setup({
+      sources = {
         null_ls.builtins.formatting.ruff,
         null_ls.builtins.formatting.stylua,
-    },})
+      },
+    })
   end,
-} 
+}
 }
