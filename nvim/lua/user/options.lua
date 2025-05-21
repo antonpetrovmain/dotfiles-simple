@@ -22,5 +22,4 @@ vim.cmd('highlight ColorColumn ctermbg=235 guibg=#262626')
 vim.opt.foldmethod     = "expr"
 vim.opt.foldexpr       = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldenable     = true
-vim.opt.foldnestmax    = 1
 vim.opt.foldlevelstart = 99
