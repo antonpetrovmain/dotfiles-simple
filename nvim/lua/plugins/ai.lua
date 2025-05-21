@@ -1,7 +1,11 @@
 return {
-   {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate", opts = {
-     highlight = { enable = true }, indent = { enable = true },  }, },
-   {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    opts = {
+      highlight = { enable = true }, indent = { enable = true }, },
+  },
+  {
     "antonpetrovmain/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -20,36 +24,36 @@ return {
         strategies = {
           chat = { adapter = "lmstudio" },
           window_position = "right",
-          cmd = { adapter = "lmstudio" },  -- you can call it whatever you like
-          inline = { adapter = "lmstudio" },  -- you can call it whatever you like
+          cmd = { adapter = "lmstudio" },    -- you can call it whatever you like
+          inline = { adapter = "lmstudio" }, -- you can call it whatever you like
         },
         adapters = {
           lmstudio = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               env = {
-                url       = "https://antonpetrov.dev",
-                chat_url  = "/v1/chat/completions",
-                api_key   = vim.env.LM_STUDIO_KEY or "",
+                url      = "https://antonpetrov.dev",
+                chat_url = "/v1/chat/completions",
+                api_key  = vim.env.LM_STUDIO_KEY or "",
               },
               schema = {
                 model = {
-                  default  = os.getenv('MODEL_QWEN3_MOE'),
-                  choices  = { os.getenv('MODEL_QWEN3_MOE'), os.getenv('MODEL_QWEN3') },
+                  default = os.getenv('MODEL_QWEN3_MOE'),
+                  choices = { os.getenv('MODEL_QWEN3_MOE'), os.getenv('MODEL_QWEN3') },
                 },
               },
             })
           end,
         },
         extensions = {
-        mcphub = {
+          mcphub = {
             callback = "mcphub.extensions.codecompanion",
             opts = {
-                show_result_in_chat = true, -- Show the mcp tool result in the chat buffer
-                make_vars = true, -- make chat #variables from MCP server resources
-                make_slash_commands = true, -- make /slash_commands from MCP server prompts
+              show_result_in_chat = true,   -- Show the mcp tool result in the chat buffer
+              make_vars = true,             -- make chat #variables from MCP server resources
+              make_slash_commands = true,   -- make /slash_commands from MCP server prompts
             },
-        }
-    },
+          }
+        },
       })
     end,
   },
@@ -57,7 +61,7 @@ return {
     "milanglacier/minuet-ai.nvim",
     opts = {
       virtualtext = {
-        auto_trigger_ft = { },
+        auto_trigger_ft = {},
         keymap = {
           -- accept whole completion
           accept = "<A-A>",
@@ -73,8 +77,8 @@ return {
           dismiss = "<A-e>",
         },
       },
-      throttle = 1000,   -- only send a request every 1000 ms  
-      debounce = 400,    -- wait 400 ms after last keystroke before sending
+      throttle = 1000, -- only send a request every 1000 ms
+      debounce = 400,  -- wait 400 ms after last keystroke before sending
       request_timeout = 30,
       provider = "openai_fim_compatible",
       n_completions = 5, -- recommend for local model for resource saving
@@ -91,31 +95,31 @@ return {
           api_key = "LM_STUDIO_KEY",
           model = os.getenv('MODEL_QWEN3_MOE'),
           optional = {
-                max_tokens = 128,
-                top_p = 0.9,
-                stop = { '\n\n' },
-            },
+            max_tokens = 128,
+            top_p = 0.9,
+            stop = { '\n\n' },
           },
-       },
+        },
+      },
     },
   },
   {
     "ravitemer/mcphub.nvim",
     dependencies = {
-      "nvim-lua/plenary.nvim",  -- Required for Job and HTTP requests
+      "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
     },
     -- uncomment the following line to load hub lazily
-    --cmd = "MCPHub",  -- lazy load 
-    build = "npm install -g mcp-hub@latest",  -- Installs required mcp-hub npm module
+    --cmd = "MCPHub",  -- lazy load
+    build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
     -- uncomment this if you don't want mcp-hub to be available globally or can't use -g
     -- build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
     opts = {
-        extensions = {
-            avante = {
-                make_slash_commands = true, -- make /slash commands from MCP server prompts
-            },
-            lualine = {},
+      extensions = {
+        avante = {
+          make_slash_commands = true,       -- make /slash commands from MCP server prompts
         },
+        lualine = {},
+      },
     }
   },
 }
