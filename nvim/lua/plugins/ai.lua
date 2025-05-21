@@ -1,11 +1,5 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    opts = {
-      highlight = { enable = true }, indent = { enable = true }, },
-  },
-  {
     "antonpetrovmain/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
