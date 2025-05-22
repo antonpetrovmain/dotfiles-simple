@@ -14,3 +14,5 @@ cd -
 mkdir -p $HOME/.local/bin
 ln -s $HOME/dotfiles/tools/llm $HOME/.local/bin/llm
 ln -s $HOME/dotfiles/tools/llm-short $HOME/.local/bin/l
+
+unalias l
