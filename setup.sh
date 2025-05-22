@@ -15,17 +15,3 @@ sudo ln -s $HOME/dotfiles/lsp/jdtls $HOME/.local/bin/jdtls
 sudo ln -s $HOME/dotfiles/lsp/lua-language-server $HOME/.local/bin/lua-language-server
 
 echo "Dotfiles installed!"
-
-# My LLM CLI tool
-mkdir -p $HOME/tools/llm-cli
-cd $HOME/tools/llm-cli
-git clone git@github.com:antonpetrovmain/llm-cli.git
-source .venv/bin/activate
-pip install -r requirements.txt
-deactivate
-cd -
-mkdir -p $HOME/.local/bin
-ln -s $HOME/dotfiles/tools/llm $HOME/.local/bin/llm
-ln -s $HOME/dotfiles/tools/llm-short $HOME/.local/bin/l
-
-echo "My LLM CLI installed"
