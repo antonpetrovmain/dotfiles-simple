@@ -10,7 +10,7 @@ ln -s $HOME/dotfiles/bash/bashrc $HOME/.bashrc
 mkdir $HOME/.config
 ln -s $HOME/dotfiles/nvim $HOME/.config/nvim
 
-mkdir $HOME/.local/bin/
+mkdir -p $HOME/.local/bin/
 sudo ln -s $HOME/dotfiles/lsp/jdtls $HOME/.local/bin/jdtls
 sudo ln -s $HOME/dotfiles/lsp/lua-language-server $HOME/.local/bin/lua-language-server
 
