@@ -31,7 +31,7 @@ return {
               },
               schema = {
                 model = {
-                  default = os.getenv('MODEL_QWEN3_MOE'),
+                  default = os.getenv('MODEL_QWEN3'),
                   choices = { os.getenv('MODEL_QWEN3_MOE'), os.getenv('MODEL_QWEN3') },
                 },
               },
