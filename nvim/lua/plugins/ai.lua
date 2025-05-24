@@ -6,7 +6,7 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = "qwen3",
+    provider = "qwen3moe",
     vendors = {
       qwen3 = {
         __inherited_from = "openai",
@@ -21,6 +21,22 @@ return {
         model = os.getenv("MODEL_QWEN3_MOE"), -- your desired model (or use gpt-4o, etc.)
       },
     },
+    web_search_engine = {
+      provider = "google", -- tavily, serpapi, searchapi, google, kagi, brave, or searxng
+      proxy = nil,   -- proxy support, e.g., http://127.0.0.1:7890
+    },
+        -- system_prompt as function ensures LLM always has latest MCP server state
+    -- This is evaluated for every message, even in existing chats
+    system_prompt = function()
+        local hub = require("mcphub").get_hub_instance()
+        return hub and hub:get_active_servers_prompt() or ""
+    end,
+    -- Using function prevents requiring mcphub before it's loaded
+    custom_tools = function()
+        return {
+            require("mcphub.extensions.avante").mcp_tool(),
+        }
+    end,
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
@@ -113,19 +129,11 @@ return {
   {
     "ravitemer/mcphub.nvim",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
+      "nvim-lua/plenary.nvim",
     },
-    -- uncomment the following line to load hub lazily
-    --cmd = "MCPHub",  -- lazy load
-    -- uncomment this if you don't want mcp-hub to be available globally or can't use -g
-    -- build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
-    opts = {
-      extensions = {
-        avante = {
-          make_slash_commands = true,       -- make /slash commands from MCP server prompts
-        },
-        lualine = {},
-      },
-    }
+    build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
+    config = function()
+      require("mcphub").setup()
+    end
   },
 }
