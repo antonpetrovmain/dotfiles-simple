@@ -6,13 +6,19 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = "lmstudio",
+    provider = "qwen3",
     vendors = {
-      lmstudio = {
+      qwen3 = {
         __inherited_from = "openai",
         api_key_name = "LM_STUDIO_KEY",
         endpoint = "https://antonpetrov.dev/v1",
         model = os.getenv("MODEL_QWEN3"), -- your desired model (or use gpt-4o, etc.)
+      },
+      qwen3moe = {
+        __inherited_from = "openai",
+        api_key_name = "LM_STUDIO_KEY",
+        endpoint = "https://antonpetrov.dev/v1",
+        model = os.getenv("MODEL_QWEN3_MOE"), -- your desired model (or use gpt-4o, etc.)
       },
     },
   },

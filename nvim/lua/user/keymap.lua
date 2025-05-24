@@ -9,9 +9,3 @@ vim.api.nvim_set_keymap('n', '<leader>if', ':lua vim.diagnostic.setqflist()<CR>'
 vim.api.nvim_set_keymap('n', '<leader>ff', ':find<Space>', { desc = 'user: begin finding a file', noremap = true, silent = false })
 
 vim.api.nvim_set_keymap('n', '<leader>ww', ':lua require("wilder").toggle()<CR>', { desc = 'user: toggle wilder', noremap = true, silent = true })
-
-vim.api.nvim_set_keymap('n', '<leader>aa', ':CodeCompanionChat<CR>', { desc = 'user: chat with AI', noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>aA', ':CodeCompanionActions<CR>', { desc = 'user: AI actions', noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>ae', ":CodeCompanion ", { desc = 'user: inline edit', noremap = true, silent = false })
-vim.api.nvim_set_keymap('v', '<leader>ae', ":CodeCompanion ", { desc = 'user: inline edit (with selection)', noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>ac', ":CodeCompanionCmd ", { desc = 'user:  create Neovim commands in command-line mode', noremap = true, silent = false })
