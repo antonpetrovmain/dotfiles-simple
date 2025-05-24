@@ -1,56 +1,64 @@
 return {
   {
-    "antonpetrovmain/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
+  "yetone/avante.nvim",
+  event = "VeryLazy",
+  version = false, -- Never set this value to "*"! Never!
+  opts = {
+    -- add any opts here
+    -- for example
+    provider = "lmstudio",
+    vendors = {
+      lmstudio = {
+        __inherited_from = "openai",
+        api_key_name = "LM_STUDIO_KEY",
+        endpoint = "https://antonpetrov.dev/v1",
+        model = os.getenv("MODEL_QWEN3"), -- your desired model (or use gpt-4o, etc.)
+        disable_tools = true, -- Open-source models often do not support tools.
+      },
     },
-    config = function()
-      require("codecompanion").setup({
-        display = {
-          chat = {
-            window = {
-              position = "right",
-              width = 0.4,
-            },
-          },
-        },
-        strategies = {
-          chat = { adapter = "lmstudio" },
-          window_position = "right",
-          cmd = { adapter = "lmstudio" },    -- you can call it whatever you like
-          inline = { adapter = "lmstudio" }, -- you can call it whatever you like
-        },
-        adapters = {
-          lmstudio = function()
-            return require("codecompanion.adapters").extend("openai_compatible", {
-              env = {
-                url      = "https://antonpetrov.dev",
-                chat_url = "/v1/chat/completions",
-                api_key  = vim.env.LM_STUDIO_KEY or "",
-              },
-              schema = {
-                model = {
-                  default = os.getenv('MODEL_QWEN3'),
-                  choices = { os.getenv('MODEL_QWEN3_MOE'), os.getenv('MODEL_QWEN3') },
-                },
-              },
-            })
-          end,
-        },
-        extensions = {
-          mcphub = {
-            callback = "mcphub.extensions.codecompanion",
-            opts = {
-              show_result_in_chat = true,   -- Show the mcp tool result in the chat buffer
-              make_vars = true,             -- make chat #variables from MCP server resources
-              make_slash_commands = true,   -- make /slash_commands from MCP server prompts
-            },
-          }
-        },
-      })
-    end,
   },
+  -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+  build = "make",
+  -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+  dependencies = {
+    "nvim-treesitter/nvim-treesitter",
+    "stevearc/dressing.nvim",
+    "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
+    --- The below dependencies are optional,
+    "echasnovski/mini.pick", -- for file_selector provider mini.pick
+    "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+    "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+    "ibhagwan/fzf-lua", -- for file_selector provider fzf
+    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+    "zbirenbaum/copilot.lua", -- for providers='copilot'
+    {
+      -- support for image pasting
+      "HakonHarnes/img-clip.nvim",
+      event = "VeryLazy",
+      opts = {
+        -- recommended settings
+        default = {
+          embed_image_as_base64 = false,
+          prompt_for_file_name = false,
+          drag_and_drop = {
+            insert_mode = true,
+          },
+          -- required for Windows users
+          use_absolute_path = true,
+        },
+      },
+    },
+    {
+      -- Make sure to set this up properly if you have lazy=true
+      'MeanderingProgrammer/render-markdown.nvim',
+      opts = {
+        file_types = { "markdown", "Avante" },
+      },
+      ft = { "markdown", "Avante" },
+    },
+  },
+},
   {
     "milanglacier/minuet-ai.nvim",
     opts = {
