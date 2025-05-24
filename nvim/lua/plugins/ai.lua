@@ -13,7 +13,6 @@ return {
         api_key_name = "LM_STUDIO_KEY",
         endpoint = "https://antonpetrov.dev/v1",
         model = os.getenv("MODEL_QWEN3"), -- your desired model (or use gpt-4o, etc.)
-        disable_tools = true, -- Open-source models often do not support tools.
       },
     },
   },
