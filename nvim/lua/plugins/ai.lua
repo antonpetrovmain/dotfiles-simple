@@ -12,13 +12,19 @@ return {
         __inherited_from = "openai",
         api_key_name = "LM_STUDIO_KEY",
         endpoint = "https://antonpetrov.dev/v1",
-        model = os.getenv("MODEL_QWEN3_MOE"),
+        model = "qwen3-30b-a3b@6bit",
       },
       lmstudio_qwen3 = {
         __inherited_from = "openai",
         api_key_name = "LM_STUDIO_KEY",
         endpoint = "https://antonpetrov.dev/v1",
-        model = os.getenv("MODEL_QWEN3"),
+        model = "qwen3-32b-mlx@4bit",
+      },
+      lmstudio_qwen25 = {
+        __inherited_from = "openai",
+        api_key_name = "LM_STUDIO_KEY",
+        endpoint = "https://antonpetrov.dev/v1",
+        model = "qwen2.5-coder-32b-instruct@6bit",
       },
     },
     web_search_engine = {
@@ -102,7 +108,7 @@ return {
       },
       throttle = 1000, -- only send a request every 1000 ms
       debounce = 400,  -- wait 400 ms after last keystroke before sending
-      request_timeout = 30,
+      request_timeout = 60,
       provider = "openai_fim_compatible",
       n_completions = 3, -- recommend for local model for resource saving
       -- I recommend beginning with a small context window size and incrementally
@@ -116,10 +122,10 @@ return {
           name = "LMStudio",
           end_point = "https://antonpetrov.dev/v1/completions",
           api_key = "LM_STUDIO_KEY",
-          model = os.getenv('MODEL_QWEN3_MOE'),
+          model = "qwen2.5-coder-32b-instruct@6bit",
           optional = {
-            max_tokens = 256,
-            top_p = 0.95,
+            max_tokens = 128,
+            top_p = 0.80,
             stop = { '\n\n' },
           },
         },
