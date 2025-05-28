@@ -24,7 +24,7 @@ return {
         __inherited_from = "openai",
         api_key_name = "LM_STUDIO_KEY",
         endpoint = "https://antonpetrov.dev/v1",
-        model = "qwen2.5-coder-32b-instruct@6bit",
+        model = "qwen2.5-coder-32b-instruct@4bit",
       },
     },
     web_search_engine = {
@@ -122,7 +122,7 @@ return {
           name = "LMStudio",
           end_point = "https://antonpetrov.dev/v1/completions",
           api_key = "LM_STUDIO_KEY",
-          model = "qwen2.5-coder-32b-instruct@6bit",
+          model = "qwen2.5-coder-32b-instruct@4bit",
           optional = {
             max_tokens = 128,
             top_p = 0.80,
