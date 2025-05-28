@@ -104,7 +104,7 @@ return {
       debounce = 400,  -- wait 400 ms after last keystroke before sending
       request_timeout = 30,
       provider = "openai_fim_compatible",
-      n_completions = 5, -- recommend for local model for resource saving
+      n_completions = 3, -- recommend for local model for resource saving
       -- I recommend beginning with a small context window size and incrementally
       -- expanding it, depending on your local computing power. A context window
       -- of 512, serves as an good starting point to estimate your computing
@@ -118,8 +118,8 @@ return {
           api_key = "LM_STUDIO_KEY",
           model = os.getenv('MODEL_QWEN3_MOE'),
           optional = {
-            max_tokens = 128,
-            top_p = 0.9,
+            max_tokens = 256,
+            top_p = 0.95,
             stop = { '\n\n' },
           },
         },
