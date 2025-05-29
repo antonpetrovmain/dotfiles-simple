@@ -18,7 +18,7 @@ return {
         __inherited_from = "openai",
         api_key_name = "LM_STUDIO_KEY",
         endpoint = "https://antonpetrov.dev/v1",
-        model = "qwen3-32b-mlx@4bit",
+        model = "qwen3-32b-mlx@6bit",
       },
       lmstudio_qwen25 = {
         __inherited_from = "openai",
