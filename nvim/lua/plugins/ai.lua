@@ -4,15 +4,13 @@ return {
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
   opts = {
-    -- add any opts here
-    -- for example
     provider = "lmstudio_qwen3moe",
     vendors = {
       lmstudio_qwen3moe = {
         __inherited_from = "openai",
         api_key_name = "LM_STUDIO_KEY",
         endpoint = "https://antonpetrov.dev/v1",
-        model = "qwen3-30b-a3b@6bit",
+        model = "qwen3-30b-a3b@8bit",
       },
       lmstudio_qwen3 = {
         __inherited_from = "openai",
@@ -24,7 +22,25 @@ return {
         __inherited_from = "openai",
         api_key_name = "LM_STUDIO_KEY",
         endpoint = "https://antonpetrov.dev/v1",
-        model = "qwen2.5-coder-32b-instruct@6bit",
+        model = "qwen2.5-coder-32b-instruct@8bit",
+      },
+      lmstudio_deepseek = {
+        __inherited_from = "openai",
+        api_key_name = "LM_STUDIO_KEY",
+        endpoint = "https://antonpetrov.dev/v1",
+        model = "deepseek-r1-0528-qwen3-8b-mlx",
+      },
+      lmstudio_devstral = {
+        __inherited_from = "openai",
+        api_key_name = "LM_STUDIO_KEY",
+        endpoint = "https://antonpetrov.dev/v1",
+        model = "devstral-small-2505@8bit",
+      },
+      lmstudio_glm = {
+        __inherited_from = "openai",
+        api_key_name = "LM_STUDIO_KEY",
+        endpoint = "https://antonpetrov.dev/v1",
+        model = "glm-4-32b@8bit",
       },
     },
     web_search_engine = {
@@ -122,7 +138,7 @@ return {
           name = "LMStudio",
           end_point = "https://antonpetrov.dev/v1/completions",
           api_key = "LM_STUDIO_KEY",
-          model = "qwen2.5-coder-32b-instruct@6bit",
+          model = "qwen3-30b-a3b@8bit",
           optional = {
             max_tokens = 128,
             top_p = 0.80,
