@@ -1,6 +1,6 @@
 return {
   {
-  "yetone/avante.nvim",
+  "antonpetrovmain/avante.nvim",
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
   opts = {
