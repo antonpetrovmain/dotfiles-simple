@@ -1,0 +1,25 @@
+services:
+  devbox-gentoo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DOCKER_GID: 989 # stat -c '%g' /var/run/docker.sock or stat -f '%g' /var/run/docker.sock on a mac
+    ports:
+      - "8080:8080"
+    container_name: gentoo
+    hostname: devbox-gentoo
+    volumes:
+      - devbox-gentoo:/home/ubuntu             
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.ssh:/home/ubuntu/.ssh:ro
+    environment:
+      - QUARKUS_HTTP_HOST=0.0.0.0
+      - TESTCONTAINERS_HOST_OVERRIDE=host.docker.internal
+    stdin_open: true   
+    tty: true    
+    extra_hosts:
+      - "devbox-gentoo:127.0.0.1"
+
+volumes:
+  devbox-gentoo:
