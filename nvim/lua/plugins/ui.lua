@@ -20,12 +20,14 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    opts = {
-      highlight = { enable = true }, indent = { enable = true },
-      fold = {
-        enable = true,
-        disable = {},
-      },
+ config = function()
+    require("nvim-treesitter.configs").setup {
+      highlight = { enable = true },
+      indent    = { enable = true },
+      fold      = { enable = true, disable = {} },
+      ensure_installed = { "markdown", "markdown_inline", "lua", "python", "java", "json", "yaml", },
+      auto_install     = true,}
+    end
+
     },
-  },
 }
