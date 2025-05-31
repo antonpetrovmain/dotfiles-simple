@@ -1,5 +1,6 @@
 -- set colorscheme
 vim.cmd.colorscheme('habamax')
+vim.o.termguicolors = true
 
 -- set leader keys
 vim.g.mapleader = ' '
