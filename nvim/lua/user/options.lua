@@ -18,4 +18,8 @@ vim.opt.tabstop = 2
 
 vim.opt.colorcolumn = "80"
 vim.cmd('highlight ColorColumn ctermbg=235 guibg=#262626')
-		
+
+vim.opt.foldmethod     = "expr"
+vim.opt.foldexpr       = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldenable     = true
+vim.opt.foldlevelstart = 99
