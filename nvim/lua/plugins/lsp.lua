@@ -13,6 +13,7 @@ return { {
   },
   config = function()
     require("lspconfig").lua_ls.setup {}
+    require("lspconfig").basedpyright.setup {}
   end,
 },
   {
