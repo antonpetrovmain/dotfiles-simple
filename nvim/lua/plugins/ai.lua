@@ -7,36 +7,31 @@ return {
     },
     opts = {
       strategies = {
-        -- Change the default chat adapter
         chat = {
-          adapter = {
-            name = "lmstudio",
-            model = "qwen3-30b-a3b@4bit",
-          },
+          adapter = "qwen3_30b",
+        },
+        cmd = {
+          adapter = "qwen3_30b",
         },
         inline = {
           adapter = {
-            name = "qwen2.5-coder-32b-instruct@4bit",
-          },
-        },
-        cmd = {
-          adapter = {
-            name = "qwen3-30b-a3b@4bit",
-          },
+            name = "qwen3_30b",
+            model = "qwen2.5-coder-32b-instruct@4bit"
+          }
         },
       },
       adapters = {
-        lmstudio = function()
+        qwen3_30b = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
-              url = "https://antonpetrov.dev",   -- optional: default value is ollama url http://127.0.0.1:11434
-              api_key = 'LM_STUDIO_KEY',         -- optional: if your endpoint is authenticated
-              chat_url = "/v1/chat/completions", -- optional: default value, override if different
-              models_endpoint = "/v1/models",    -- optional: attaches to the end of the URL to form the endpoint to retrieve models
+              url = "https://antonpetrov.dev",
+              api_key = 'LM_STUDIO_KEY',
+              chat_url = "/v1/chat/completions",
+              models_endpoint = "/v1/models",
             },
             schema = {
               model = {
-                default = "qwen2.5-coder-32b-instruct@4bit", -- define llm model to be used
+                default = "qwen3-30b-a3b@4bit", -- define llm model to be used
               },
             },
           })

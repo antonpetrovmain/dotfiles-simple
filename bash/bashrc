@@ -9,4 +9,5 @@ export PATH="$HOME/.local/bin:$HOME/.config/nvim/node_modules/.bin:$PATH"
 
 alias lvim="JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 nvim"
 alias python="python3"
+alias a='aider --model openai/qwen3-30b-a3b@4bit --api-key openai=$LM_STUDIO_KEY --openai-api-base https://antonpetrov.dev/v1 --no-auto-commits'
 export TERMINFO_DIRS="~/.terminfo:/usr/share/terminfo"
