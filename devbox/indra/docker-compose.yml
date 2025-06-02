@@ -1,0 +1,30 @@
+services:
+  devbox-indra:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DOCKER_GID: 989 # stat -c '%g' /var/run/docker.sock or stat -f '%g' /var/run/docker.sock on a mac
+    ports:
+      - "8080:8080"
+      - "8890:8890"
+      - "8892:8892"
+      - "8894:8894"
+      - "8896:8896"
+      - "8898:8898"
+    container_name: devbox-indra
+    hostname: devbox-indra
+    volumes:
+      - devbox-indra:/home/ubuntu             
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.ssh:/home/ubuntu/.ssh:ro
+    environment:
+      - QUARKUS_HTTP_HOST=0.0.0.0
+      - TESTCONTAINERS_HOST_OVERRIDE=host.docker.internal
+    stdin_open: true   
+    tty: true    
+    extra_hosts:
+      - "devbox-indra:127.0.0.1"
+
+volumes:
+  devbox-indra:
