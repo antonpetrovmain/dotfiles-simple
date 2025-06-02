@@ -90,9 +90,10 @@ return {
           name = "LMStudio",
           end_point = "https://antonpetrov.dev/v1/completions",
           api_key = "LM_STUDIO_KEY",
-          model = os.getenv "MODEL_QWEN25",
+          model = os.getenv "MODEL_QWEN3_MOE",
           optional = {
-            max_tokens = 1024,
+            max_tokens = 2048,
+            temperature = 0.15,
             top_p = 0.95,
             stop = { '\n\n' },
           },
