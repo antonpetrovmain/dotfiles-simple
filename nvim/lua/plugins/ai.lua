@@ -31,7 +31,7 @@ return {
             },
             schema = {
               model = {
-                default = "qwen3-30b-a3b@4bit", -- define llm model to be used
+                default = os.getenv "MODEL_QWEN3_MOE", -- define llm model to be used
               },
             },
           })
@@ -90,7 +90,7 @@ return {
           name = "LMStudio",
           end_point = "https://antonpetrov.dev/v1/completions",
           api_key = "LM_STUDIO_KEY",
-          model = "qwen2.5-coder-32b-instruct@4bit",
+          model = os.getenv "MODEL_QWEN25",
           optional = {
             max_tokens = 1024,
             top_p = 0.95,

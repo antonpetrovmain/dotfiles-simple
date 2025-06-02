@@ -10,3 +10,6 @@ vim.api.nvim_set_keymap('n', '<leader>ff', ':find<Space>', { desc = 'user: begin
 vim.api.nvim_set_keymap('n', '<leader>fg', ':vimgrep<Space>', { desc = 'user: grep a string in files', noremap = true, silent = false })
 
 vim.api.nvim_set_keymap('n', '<leader>ww', ':lua require("wilder").toggle()<CR>', { desc = 'user: toggle wilder', noremap = true, silent = true })
+
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd([[cab cc CodeCompanion]])
