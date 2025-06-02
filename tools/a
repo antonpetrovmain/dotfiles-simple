@@ -1,0 +1,3 @@
+#!/bin/bash
+aider --model "openai/$MODEL_QWEN3_MOE" --api-key openai=$LM_STUDIO_KEY --openai-api-base https://antonpetrov.dev/v1 --no-auto-commits
+
