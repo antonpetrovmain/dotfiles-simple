@@ -8,20 +8,20 @@ return {
     opts = {
       strategies = {
         chat = {
-          adapter = "qwen3_30b",
+          adapter = "LMStudio",
         },
         cmd = {
-          adapter = "qwen3_30b",
+          adapter = "LMStudio",
         },
         inline = {
           adapter = {
-            name = "qwen3_30b",
-            model = "qwen2.5-coder-32b-instruct@4bit"
+            name = "LMStudio",
+            model = os.getenv "MODEL_DEVSTRAL",
           }
         },
       },
       adapters = {
-        qwen3_30b = function()
+        LMStudio = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
             env = {
               url = "https://antonpetrov.dev",
@@ -90,7 +90,7 @@ return {
           name = "LMStudio",
           end_point = "https://antonpetrov.dev/v1/completions",
           api_key = "LM_STUDIO_KEY",
-          model = os.getenv "MODEL_QWEN3_MOE",
+          model = os.getenv "MODEL_DEVSTRAL",
           optional = {
             max_tokens = 2048,
             temperature = 0.15,
