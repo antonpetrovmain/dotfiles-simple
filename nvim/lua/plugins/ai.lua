@@ -9,6 +9,13 @@ return {
       strategies = {
         chat = {
           adapter = "LMStudio",
+          variables = {
+            ["buffer"] = {
+              opts = {
+                default_params = 'pin',         -- or 'watch'
+              },
+            },
+          },
         },
         cmd = {
           adapter = "LMStudio",
@@ -16,7 +23,7 @@ return {
         inline = {
           adapter = {
             name = "LMStudio",
-            model = os.getenv "MODEL_DEVSTRAL",
+            model = os.getenv "MODEL_QWEN25",
           }
         },
       },
@@ -90,11 +97,11 @@ return {
           name = "LMStudio",
           end_point = "https://antonpetrov.dev/v1/completions",
           api_key = "LM_STUDIO_KEY",
-          model = os.getenv "MODEL_DEVSTRAL",
+          model = os.getenv "MODEL_QWEN25",
           optional = {
-            max_tokens = 2048,
+            max_tokens = 1024,
             temperature = 0.15,
-            top_p = 0.95,
+            top_p = 0.80,
             stop = { '\n\n' },
           },
         },
