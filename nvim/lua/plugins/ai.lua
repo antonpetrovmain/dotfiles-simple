@@ -100,8 +100,8 @@ return {
           model = os.getenv "MODEL_AUTOCOMPLETE",
           optional = {
             max_tokens = 1024,
-            temperature = 0.7,
-            top_p = 0.80,
+            temperature = 0.15,
+            top_p = 0.95,
             stop = { '\n\n' },
           },
         },
