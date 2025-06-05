@@ -23,7 +23,7 @@ return {
         inline = {
           adapter = {
             name = "LMStudio",
-            model = os.getenv "MODEL_QWEN25",
+            model = os.getenv "MODEL_INLINE",
           }
         },
       },
@@ -85,7 +85,7 @@ return {
       debounce = 400,  -- wait 400 ms after last keystroke before sending
       request_timeout = 60,
       provider = "openai_fim_compatible",
-      n_completions = 3, -- recommend for local model for resource saving
+      n_completions = 5, -- recommend for local model for resource saving
       -- I recommend beginning with a small context window size and incrementally
       -- expanding it, depending on your local computing power. A context window
       -- of 512, serves as an good starting point to estimate your computing
@@ -97,10 +97,10 @@ return {
           name = "LMStudio",
           end_point = "https://antonpetrov.dev/v1/completions",
           api_key = "LM_STUDIO_KEY",
-          model = os.getenv "MODEL_QWEN25",
+          model = os.getenv "MODEL_AUTOCOMPLETE",
           optional = {
             max_tokens = 1024,
-            temperature = 0.15,
+            temperature = 0.7,
             top_p = 0.80,
             stop = { '\n\n' },
           },

@@ -1,3 +1,3 @@
 #!/bin/bash
-llm chat --model "$MODEL_QWEN25" --stream -p "$*"
+llm chat --model "$MODEL_CLI" --stream -p "$*"
 
