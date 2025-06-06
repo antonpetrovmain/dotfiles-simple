@@ -2,10 +2,12 @@
 rm $HOME/.tmux.conf
 rm $HOME/.bashrc
 rm $HOME/.gitconfig
+rm $HOME/.aider.conf.yml
 rm -rf $HOME/.config/nvim
 
 ln -s $HOME/dotfiles/tmux/tmux.conf $HOME/.tmux.conf
 ln -s $HOME/dotfiles/bash/bashrc $HOME/.bashrc
+ln -s $HOME/dotfiles/aider/aider.conf.yml $HOME/.aider.conf.yml
 
 # Neovim
 mkdir $HOME/.config

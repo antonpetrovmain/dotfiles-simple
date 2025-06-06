@@ -81,8 +81,8 @@ return {
           dismiss = "<A-e>",
         },
       },
-      throttle = 1000, -- only send a request every 1000 ms
-      debounce = 400,  -- wait 400 ms after last keystroke before sending
+      throttle = 50, -- only send a request every 100 ms
+      debounce = 100,  -- wait 100 ms after last keystroke before sending
       request_timeout = 60,
       provider = "openai_fim_compatible",
       n_completions = 3, -- recommend for local model for resource saving
@@ -99,8 +99,8 @@ return {
           api_key = "LM_STUDIO_KEY",
           model = os.getenv "MODEL_AUTOCOMPLETE",
           optional = {
-            max_tokens = 1024,
-            temperature = 0.15,
+            max_tokens = 256,
+            temperature = 0.1,
             top_p = 0.95,
             stop = { '\n\n' },
           },
