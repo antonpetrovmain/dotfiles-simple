@@ -38,7 +38,7 @@ return {
             },
             schema = {
               model = {
-                default = os.getenv "MODEL_QWEN3_MOE", -- define llm model to be used
+                default = os.getenv "MODEL_CHAT", -- define llm model to be used
               },
             },
           })
