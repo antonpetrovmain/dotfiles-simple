@@ -85,7 +85,7 @@ return {
       debounce = 400,  -- wait 400 ms after last keystroke before sending
       request_timeout = 60,
       provider = "openai_fim_compatible",
-      n_completions = 5, -- recommend for local model for resource saving
+      n_completions = 3, -- recommend for local model for resource saving
       -- I recommend beginning with a small context window size and incrementally
       -- expanding it, depending on your local computing power. A context window
       -- of 512, serves as an good starting point to estimate your computing
