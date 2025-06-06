@@ -1,4 +1,4 @@
 #!/bin/bash
-aider --architect --model "openai/$MODEL_ARCHITECT" --editor-model "openai/$MODEL_EDITOR" --weak-model "openai/$MODEL_WEAK"  --api-key openai=$LM_STUDIO_KEY --openai-api-base https://antonpetrov.dev/v1 --no-auto-commits --code-theme nord-darker --no-auto-accept-architect --editor-edit-format editor-diff --edit-format diff
+aider --architect --model "openai/$MODEL_ARCHITECT" --editor-model "openai/$MODEL_EDITOR" --weak-model "openai/$MODEL_WEAK"  --api-key openai=$LM_STUDIO_KEY --openai-api-base https://antonpetrov.dev/v1 --no-auto-commits --code-theme nord-darker --no-auto-accept-architect --editor-edit-format editor-diff --edit-format diff --timeout 500000000
 
 
