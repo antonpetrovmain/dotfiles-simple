@@ -1,3 +1,4 @@
 alias:
-  - "plan:openai/qwen3-30b-a3b@8bit"
-  - "code:openai/devstral-small@8bit"
+  - "think:openai/qwen3-32b@6bit"
+  - "code:openai/qwen2.5-coder-14b-instruct@6bit"
+  - "explore:openai/qwen3-30b-a3b@8bit"
