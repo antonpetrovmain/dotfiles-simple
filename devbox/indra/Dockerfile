@@ -30,7 +30,8 @@ RUN apt-get update \
       vim \
       jq \ 
       pipx \
-      libpq-dev
+      libpq-dev \ 
+      pass
 
 RUN add-apt-repository -y ppa:neovim-ppa/unstable \     
  && apt-get update \

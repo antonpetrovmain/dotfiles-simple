@@ -29,7 +29,8 @@ RUN apt-get update \
       locales \
       vim \
       jq \ 
-      pipx
+      pipx \
+      pass
 
 RUN add-apt-repository -y ppa:neovim-ppa/unstable \     
  && apt-get update \
