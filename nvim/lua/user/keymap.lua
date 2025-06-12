@@ -17,5 +17,9 @@ vim.keymap.set({ "n", "v" }, "<leader>aA", "<cmd>CodeCompanionActions<cr>", { no
 vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
 vim.keymap.set("v", "<leader>ab", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap('n', '<leader>hd', ':Gitsigns diffthis<CR>', { desc = 'user: show the current hunk in a diff', noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>hr', ':Gitsigns reset_hunk<CR>', { desc = 'user: reset the current hunk', noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>hp', ':Gitsigns preview_hunk_inline<CR>', { desc = 'user: show the current hunk in a diff', noremap = true, silent = true })
+
 -- Expand 'cc' into 'CodeCompanion' in the command line
 vim.cmd([[cab cc CodeCompanion]])

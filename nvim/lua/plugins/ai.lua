@@ -81,11 +81,11 @@ return {
           dismiss = "<A-e>",
         },
       },
-      throttle = 50, -- only send a request every 100 ms
-      debounce = 100,  -- wait 100 ms after last keystroke before sending
+      throttle = 50, -- only send a request every N ms
+      debounce = 100,  -- wait N ms after last keystroke before sending
       request_timeout = 60,
       provider = "openai_fim_compatible",
-      n_completions = 3, -- recommend for local model for resource saving
+      n_completions = 5, -- recommend for local model for resource saving
       -- I recommend beginning with a small context window size and incrementally
       -- expanding it, depending on your local computing power. A context window
       -- of 512, serves as an good starting point to estimate your computing
@@ -99,7 +99,7 @@ return {
           api_key = "LM_STUDIO_KEY",
           model = os.getenv "MODEL_AUTOCOMPLETE",
           optional = {
-            max_tokens = 256,
+            max_tokens = 512,
             temperature = 0.1,
             top_p = 0.95,
             stop = { '\n\n' },
