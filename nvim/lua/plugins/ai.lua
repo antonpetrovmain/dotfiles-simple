@@ -108,4 +108,32 @@ return {
       },
     },
   },
+  {
+        "dlants/magenta.nvim",
+        lazy = false, -- you could also bind to <leader>mt
+        build = "npm install --frozen-lockfile",
+        opts = {
+        profiles = {
+            {
+                name = "qwen3-moe",
+                provider = "ollama",
+                model = "qwen3-30b-a3b@8bit",
+                apiKeyEnvVar = "LM_STUDIO_KEY",
+                baseUrl = "https://antonpetrov.dev/v1"
+
+              },
+          },
+        },
+  },
+  {
+    "ibhagwan/fzf-lua",
+    lazy = false,
+    config = function()
+      require("fzf-lua").setup({
+        -- ...
+      })
+      require("fzf-lua").register_ui_select()
+    end,
+    -- ...
+  }
 }
