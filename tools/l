@@ -1,3 +1,3 @@
 #!/bin/bash
-llm chat --model "$MODEL_CLI" --stream -p "$*"
+llm chat --model "$MODEL_CLI_LIGHT" --stream -p "$*"
 
