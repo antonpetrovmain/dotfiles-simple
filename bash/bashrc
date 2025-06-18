@@ -9,6 +9,7 @@ export PATH="$HOME/tools/kafka/bin:$HOME/.local/bin:$HOME/.config/nvim/node_modu
 
 alias lvim="JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64 nvim"
 alias python="python3"
+alias fd="fdfind"
 export TERMINFO_DIRS="~/.terminfo:/usr/share/terminfo"
 
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
