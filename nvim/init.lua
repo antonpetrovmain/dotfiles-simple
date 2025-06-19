@@ -174,6 +174,36 @@ vim.o.confirm = true
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+vim.keymap.set('n', '<esc>', ':nohlsearch<CR>', { desc = 'user: clear highlights when pressing escape', noremap = true, silent = true })
+
+vim.keymap.set(
+  'n',
+  '<leader>ee',
+  ':Lex 15 %:p:h <CR>',
+  { desc = 'user: open browser on the left in the directory of the current file', noremap = true, silent = true }
+)
+vim.keymap.set(
+  'n',
+  '<leader>ef',
+  ':let @/=expand("%:t") <Bar> execute "Lex" 15 expand("%:p:h") <Bar> normal n<CR>',
+  { desc = 'user: open file explorer with current file path', noremap = true, silent = true }
+)
+
+vim.keymap.set('n', '<leader>id', ':lua vim.diagnostic.open_float()<CR>', { desc = 'user: show diagnostic message', noremap = true, silent = true })
+vim.keymap.set(
+  'n',
+  '<leader>if',
+  ':lua vim.diagnostic.setqflist()<CR>',
+  { desc = 'user: show all diagnostics in quick fix list', noremap = true, silent = true }
+)
+vim.keymap.set('n', '<leader>is', ':lua vim.diagnostic.show()<CR>', { desc = 'user: show diagnostic message', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>ih', ':lua vim.diagnostic.hide()<CR>', { desc = 'user: show diagnostic message', noremap = true, silent = true })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>aA', '<cmd>CodeCompanionActions<cr>', { noremap = true, silent = true })
+vim.keymap.set({ 'n', 'v' }, '<leader>aa', '<cmd>CodeCompanionChat Toggle<cr>', { noremap = true, silent = true })
+vim.keymap.set('v', '<leader>ab', '<cmd>CodeCompanionChat Add<cr>', { noremap = true, silent = true })
+vim.cmd [[cab cc CodeCompanion]] -- Expand 'cc' into 'CodeCompanion' in the command line
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -723,6 +753,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'java-debug-adapter',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -980,18 +1011,18 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
