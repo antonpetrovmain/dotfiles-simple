@@ -12,7 +12,7 @@ return {
           variables = {
             ["buffer"] = {
               opts = {
-                default_params = 'pin',         -- or 'watch'
+                default_params = 'pin', -- or 'watch'
               },
             },
           },
@@ -81,8 +81,8 @@ return {
           dismiss = "<A-e>",
         },
       },
-      throttle = 50, -- only send a request every N ms
-      debounce = 100,  -- wait N ms after last keystroke before sending
+      throttle = 50,  -- only send a request every N ms
+      debounce = 100, -- wait N ms after last keystroke before sending
       request_timeout = 60,
       provider = "openai_fim_compatible",
       n_completions = 5, -- recommend for local model for resource saving
@@ -108,32 +108,4 @@ return {
       },
     },
   },
-  {
-        "dlants/magenta.nvim",
-        lazy = false, -- you could also bind to <leader>mt
-        build = "npm install --frozen-lockfile",
-        opts = {
-        profiles = {
-            {
-                name = "qwen3-moe",
-                provider = "ollama",
-                model = "qwen3-30b-a3b@8bit",
-                apiKeyEnvVar = "LM_STUDIO_KEY",
-                baseUrl = "https://antonpetrov.dev/v1"
-
-              },
-          },
-        },
-  },
-  {
-    "ibhagwan/fzf-lua",
-    lazy = false,
-    config = function()
-      require("fzf-lua").setup({
-        -- ...
-      })
-      require("fzf-lua").register_ui_select()
-    end,
-    -- ...
-  }
 }

@@ -1,9 +1,22 @@
-return { 
+return {
 	{ "mason-org/mason.nvim", cmd = "Mason", opts = {} },
-  { "WhoIsSethDaniel/mason-tool-installer.nvim", opts = {
-    ensure_installed = {  'lua-language-server',   'basedpyright', 'jdtls', 
-      'black', 'pylint', 'flake8',},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		opts = {
+			ensure_installed = {
+        -- lsp
+				"lua-language-server",
+				"basedpyright",
+				"jdtls",
 
-  }},
+        -- formatters
+				"black",
+				"stylua",
 
+        -- linters
+				"flake8",
+				"pylint",
+			},
+		},
+	},
 }
