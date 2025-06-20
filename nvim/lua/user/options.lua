@@ -1,5 +1,5 @@
 -- set colorscheme
-vim.cmd.colorscheme("habamax")
+vim.cmd.colorscheme("catppuccin")
 vim.o.termguicolors = true
 
 -- set leader keys
@@ -15,6 +15,7 @@ vim.opt.path:append({ "src/**", "lua/**", "ftplugin/**", "app/.", "app/src/**", 
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 
 vim.opt.colorcolumn = "80"
 vim.cmd("highlight ColorColumn ctermbg=235 guibg=#262626")
